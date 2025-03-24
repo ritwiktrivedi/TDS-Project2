@@ -1,0 +1,10 @@
+#!/Users/gunjananand/Desktop/IIT_Term3/TDS/Project_2/project/bin/python3
+# PBR Generated from 'console_scripts'
+
+import sys
+
+from migrate.versioning.shell import main
+
+
+if __name__ == "__main__":
+    sys.exit(main())
