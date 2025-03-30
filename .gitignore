@@ -8,3 +8,4 @@ venv/
 project/lib/
 .DS_Store
 .env
+.vercel
