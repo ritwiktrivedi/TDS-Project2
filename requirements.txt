@@ -1,141 +1,163 @@
-ace_tools==0.0
-annotated-types==0.7.0
-anyio==4.8.0
-appnope==0.1.4
-asttokens==3.0.0
-beautifulsoup4==4.13.3
-blis==1.2.0
-catalogue==2.0.10
-certifi==2024.8.30
-chardet==3.0.4
-charset-normalizer==3.4.1
-click==8.1.8
-cloudpathlib==0.20.0
-comm==0.2.2
-confection==0.1.5
-contourpy==1.3.1
-cycler==0.12.1
-cymem==2.0.11
-debugpy==1.8.12
-decorator==5.1.1
-distro==1.9.0
-duckdb==1.2.0
-en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl#sha256=5e6329fe3fecedb1d1a02c3ea2172ee0fede6cea6e4aefb6a02d832dba78a310
-et_xmlfile==2.0.0
-executing==2.2.0
-Faker==35.2.0
+# --- Core Dependencies (Potentially Incompatible - Needs Resolution) ---
+# fastapi, starlette, pydantic, and pydantic-core versions are likely conflicting.
+# You MUST resolve this based on your project's needs.
+# Option A: If fastapi==0.115.8 is key, remove/adjust pydantic/pydantic-core/starlette pins.
+# Option B: If pydantic==2.10.6 is key, you MUST downgrade fastapi/starlette significantly
+#           and use the correct pydantic-core version (e.g., pydantic-core~=2.10.6).
+# The versions below reflect the *original request* but are likely broken.
 fastapi==0.115.8
-filelock==3.17.0
-fonttools==4.56.0
-fsspec==2025.2.0
-fuzzywuzzy==0.18.0
-gensim==4.3.3
-geographiclib==2.0
-geopy==2.4.1
-googletrans==4.0.0rc1
-h11
-h2==3.2.0
+starlette==0.45.3
+pydantic==2.10.6
+# pydantic_core==2.27.2  # Highly likely incompatible with pydantic==2.10.6. Needs adjustment.
+
+# --- HTTP & Async ---
+anyio==4.8.0
+# h11 # Version needed - install dependencies to find compatible version
+httpcore # Version needed - install dependencies to find compatible version
+httpx # Version needed - install dependencies to find compatible version
+h2==3.2.0 # Note: h2 might have specific httpcore/httpx needs
 hpack==3.0.0
 hstspreload==2025.1.1
-httpcore
-httpx
 hyperframe==5.2.0
-idna==2.10
-ipykernel==6.29.5
-ipython==8.32.0
-jedi==0.19.2
-Jinja2==3.1.5
-jiter==0.8.2
-joblib==1.4.2
-jupyter_client==8.6.3
-jupyter_core==5.7.2
-kiwisolver==1.4.8
-langcodes==3.5.0
-language_data==1.3.0
-Levenshtein==0.26.1
-llvmlite==0.44.0
-lxml==5.3.1
-marisa-trie==1.2.1
-Markdown==3.7
-markdown-it-py==3.0.0
-MarkupSafe==3.0.2
-matplotlib==3.10.0
-matplotlib-inline==0.1.7
-mdurl==0.1.2
-Metaphone==0.6
-more-itertools==10.6.0
-mpmath==1.3.0
-murmurhash==1.0.12
-nest-asyncio==1.6.0
-networkx==3.4.2
-nltk==3.9.1
-numba==0.61.0
-numpy==1.26.4
-openai==1.65.2
-openai-whisper==20240930
-openpyxl==3.1.5
-packaging==24.2
-pandas==2.2.3
-parso==0.8.4
-patsy==1.0.1
-pexpect==4.9.0
-pillow==11.1.0
-platformdirs==4.3.6
-preshed==3.0.9
-prompt_toolkit==3.0.50
-psutil==6.1.1
-ptyprocess==0.7.0
-pure_eval==0.2.3
-pydantic==2.10.6
-pydantic_core==2.27.2
-Pygments==2.19.1
-pyparsing==3.2.1
-pytesseract==0.3.13
-python-dateutil==2.9.0.post0
-python-dotenv==1.0.1
-python-Levenshtein==0.26.1
-python-multipart==0.0.20
-pytz==2025.1
-pyzmq==26.2.1
-RapidFuzz==3.12.1
-regex==2024.11.6
+idna==3.7
 requests==2.32.3
-rfc3986==1.5.0
-rich==13.9.4
-scikit-learn==1.5.2
-scipy==1.13.1
-seaborn==0.13.2
-setuptools==76.0.0
-shellingham==1.5.4
-six==1.17.0
-smart-open==7.1.0
+rfc3986==1.5.0 # Often dependency of httpcore/httpx
 sniffio==1.3.1
-soupsieve==2.6
+urllib3==2.3.0
+uvicorn==0.34.0
+
+# --- SpaCy Ecosystem ---
 spacy==3.8.4
+en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl#sha256=5e6329fe3fecedb1d1a02c3ea2172ee0fede6cea6e4aefb6a02d832dba78a310
+blis==1.2.0
+catalogue==2.0.10
+confection==0.1.5
+cymem==2.0.11
+murmurhash==1.0.12
+preshed==3.0.9
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 srsly==2.5.1
-stack-data==0.6.3
-starlette==0.45.3
-statsmodels==0.14.4
-sympy==1.13.1
 thinc==8.3.4
-threadpoolctl==3.5.0
-tiktoken==0.9.0
-torch==2.6.0
-tornado==6.4.2
-tqdm==4.67.1
-traitlets==5.14.3
-typer==0.15.1
-typing_extensions==4.12.2
-tzdata==2025.1
-urllib3==2.3.0
-uv==0.5.29
-uvicorn==0.34.0
 wasabi==1.1.3
-wcwidth==0.2.13
-weasel==0.4.1
-wheel==0.45.1
-wrapt==1.17.2
+
+# --- Data Science & ML ---
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.13.1
+scikit-learn==1.5.2
+joblib==1.4.2 # Dependency of scikit-learn
+threadpoolctl==3.5.0 # Dependency of scikit-learn/numpy
+statsmodels==0.14.4
+patsy==1.0.1 # Dependency of statsmodels
+matplotlib==3.10.0
+seaborn==0.13.2
+contourpy==1.3.1 # Dependency of matplotlib
+cycler==0.12.1 # Dependency of matplotlib
+fonttools==4.56.0 # Dependency of matplotlib
+kiwisolver==1.4.8 # Dependency of matplotlib
+pillow==11.1.0 # Dependency of matplotlib/torchvision etc.
+pyparsing==3.2.1 # Dependency of matplotlib/packaging
 xgboost==2.1.4
-yt-dlp==2025.2.19
+torch==2.6.0
+numba==0.61.0
+llvmlite==0.44.0 # Dependency of numba
+
+# --- NLP & Text Processing ---
+beautifulsoup4==4.13.3
+soupsieve==2.6 # Dependency of beautifulsoup4
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.26.1 # Kept this one, removed duplicate 'Levenshtein'
+gensim==4.3.3
+smart-open==7.1.0 # Dependency of gensim
+langcodes==3.5.0
+language_data==1.3.0
+lxml==5.3.1
+Markdown==3.7
+markdown-it-py==3.0.0
+mdurl==0.1.2 # Dependency of markdown-it-py
+Metaphone==0.6 # Often used with fuzzy matching/NLP
+nltk==3.9.1
+regex==2024.11.6 # Dependency of nltk, tiktoken etc.
+tiktoken==0.9.0 # Dependency for OpenAI
+pytesseract==0.3.13
+# googletrans==4.0.0rc1
+
+# --- OpenAI ---
+openai==1.65.2
+openai-whisper==20240930
+
+# --- Jupyter / IPython ---
+ipython==8.32.0
+ipykernel==6.29.5
+jupyter_client==8.6.3
+jupyter_core==5.7.2
+comm==0.2.2 # Dependency of ipykernel
+debugpy==1.8.12 # Dependency of ipykernel
+ipython-genutils # Often needed, though not listed, might be implicit via traitlets?
+jedi==0.19.2 # Dependency of ipython
+matplotlib-inline==0.1.7 # Dependency of ipython/ipykernel
+nest-asyncio==1.6.0 # Used by asyncio/jupyter
+parso==0.8.4 # Dependency of jedi
+pexpect==4.9.0 # Dependency of ipython
+pickleshare # Often needed by ipython, might be implicit?
+prompt_toolkit==3.0.50 # Dependency of ipython
+ptyprocess==0.7.0 # Dependency of pexpect
+pure_eval==0.2.3 # Dependency of stack-data
+Pygments==2.19.1 # Dependency of ipython/rich
+stack-data==0.6.3 # Dependency of ipython
+traitlets==5.14.3 # Dependency of ipython/jupyter
+wcwidth==0.2.13 # Dependency of prompt_toolkit
+pyzmq==26.2.1 # Dependency of ipykernel/jupyter
+
+# --- Utilities & Misc ---
+ace_tools==0.0 # Version 0.0 is unusual, maybe a placeholder?
+annotated-types==0.7.0 # Often dependency of Pydantic V2
+appnope==0.1.4 # macOS specific, dependency of ipython
+asttokens==3.0.0 # Dependency of executing/stack-data
+catalogue==2.0.10 # Already listed under Spacy
+certifi==2024.8.30
+chardet==3.0.4 # Dependency of requests (older versions)
+charset-normalizer==3.4.1 # Dependency of requests
+click==8.1.8 # CLI helper, used by many tools like Flask, Typer
+cloudpathlib==0.20.0 # srsly dependency
+decorator==5.1.1 # Dependency of networkx, ipython etc.
+distro==1.9.0 # Dependency of openai
+et_xmlfile==2.0.0 # Dependency of openpyxl
+executing==2.2.0 # Dependency of stack-data
+Faker==35.2.0
+filelock==3.17.0 # Used by huggingface_hub, nltk, etc. for locking
+fsspec==2025.2.0 # Filesystem spec, used by pandas, huggingface etc.
+geographiclib==2.0 # Dependency of geopy
+geopy==2.4.1
+Jinja2==3.1.6 # Templating engine, dependency of jupyter, fastapi, etc.
+jiter==0.8.2 # Dependency of pydantic-core potentially
+marisa-trie==1.2.1 # Used by language_data
+MarkupSafe==3.0.2 # Dependency of Jinja2
+more-itertools==10.6.0
+mpmath==1.3.0 # Dependency of sympy
+networkx==3.4.2 # Often used with ML/graph tasks
+openpyxl==3.1.5
+packaging==24.2 # Core packaging utility
+platformdirs==4.3.6 # Dependency of jupyter_core etc.
+psutil==6.1.1 # System utils, dependency of ipykernel, ray etc.
+python-dateutil==2.9.0.post0 # Used by pandas, matplotlib etc.
+python-dotenv==1.0.1
+python-multipart==0.0.20 # Dependency for FastAPI file uploads
+pytz==2025.1 # Usually a dependency of pandas
+RapidFuzz==3.12.1 # Alternative/faster fuzzy matching
+rich==13.9.4 # Pretty printing, used by typer, etc.
+setuptools==76.0.0 # Build system - version might be important
+shellingham==1.5.4 # Dependency of rich, virtualenv
+six==1.17.0 # Python 2/3 compat, still used by some older libs or their dependencies
+sympy==1.13.1 # Symbolic math
+tornado==6.4.2 # Web server/framework, dependency of jupyter
+tqdm==4.67.1 # Progress bars
+typer==0.15.1 # CLI framework based on Click, uses Rich
+typing_extensions==4.12.2 # Backports for typing module, used heavily by Pydantic, FastAPI
+tzdata==2025.1 # Dependency for pytz
+uv==0.5.29 # Fast python installer/locker (unusual to see in requirements.txt itself)
+weasel==0.4.1 # Dependency for spacy projects/CLI
+wheel==0.45.1 # Build system package format
+wrapt==1.17.2 # Decorator utility
+yt-dlp==2025.2.19 # YouTube downloader, often used in data scraping tasks
